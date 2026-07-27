@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sol Lead"
+  short_description: "Sol 지휘와 Luna·Terra 자동 개발 위임"
+  default_prompt: "Use $sol-lead to orchestrate this coding task with automatic model and effort routing."
