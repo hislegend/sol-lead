@@ -41,7 +41,7 @@ Set-diff over input and output IDs is a command you can write, so omission *is* 
 
 Media analysis (video frames, screenshots, large logs) belongs on a worker specifically because the bulk artifacts burn the worker's context instead of the lead's; the lead takes only the summary. Require in the completion condition: a timecode for every claim so the lead can re-verify against the source, coverage of scene changes plus first and last frames (uniform sampling drops short cuts entirely), mismatches between captions, audio, and on-screen text reported rather than merged, no inferring "nothing here" from a silent or caption-free stretch, and explicit uncertainty flags.
 
-Keep Sol responsible for architecture, tradeoffs, write-set boundaries, verification choice, and final verdict. Answer-only work stays with lead. So does any tiny, well-localized edit (a few lines at a known location): delegation overhead exceeds benefit there, and lead reads only the affected lines, not the whole file.
+Keep Sol responsible for architecture, tradeoffs, write-set boundaries, verification choice, and final verdict. Answer-only work stays with lead. So does any tiny, well-localized **repair** — a few lines at a known location, single file, within an existing pattern, and not touching schema, billing, security, or auth: delegation overhead exceeds benefit there, and lead reads only the affected lines. New features and architecture changes go through the plan gate regardless of size; this band never bypasses it.
 
 Honor explicit user routing over this table. If requested route unavailable, state substitution and choose closest available route.
 
@@ -54,10 +54,11 @@ Honor explicit user routing over this table. If requested route unavailable, sta
    - exact goal and observable completion condition;
    - owned files or modules;
    - relevant symbols, constraints, and existing patterns;
-   - required focused checks;
+   - required focused checks, with any "at least N" count on **exploratory verification** (mutation counts, extra edge-case hunting) read as **N = the ceiling** — extra findings are reported as candidates, not executed (an uncapped "at least" gets more expensive the more diligent the worker). Acceptance criteria and security or compliance checks are never capped this way;
+   - scope of test execution: **only the worker's own new or changed tests plus directly adjacent suites** — full-suite and full-build runs happen once, at the end, by the lead;
    - notice that other agents share worktree, existing edits must remain, and edits outside ownership are forbidden;
    - instruction not to install dependencies, mutate package-manager files, commit, push, deploy, or migrate unless user authorized exact action.
-5. Wait for every required result before judging or integrating.
+5. Wait for every required result before judging or integrating. Cap the review-repair loop: **3 rounds by default, risk-proportional** (UI and docs 3; schema, billing, security, auth **at least 5** — an up-front declaration may only raise it). Between rounds run typecheck plus targeted tests on repaired files only; **the full gate runs once, after the final round** — if that final gate fails, one targeted repair plus one rerun, then blocked. Hitting the cap with an unresolved P1 means **blocked, reported** — never silently accepted; the cap forces convergence, it does not excuse defects.
 6. Inspect actual status and diff. Check ownership, overlap, preservation of existing user changes, and unexpected files. If an out-of-ownership change exists but cannot be attributed to a specific worker — two clean edits can merge without a conflict marker — stop and report rather than guessing; adopt per-worker worktree isolation before retrying at that scale.
 7. Run smallest proof covering requested behavior. Lead owns final verdict and manually exercises matching surface when applicable. If a required check cannot run in this environment, the task is **verification blocked**, not done: report the exact command and blocker, and get separate approval before substituting. A substitute check counts only when it demonstrably covers the same scope; skipped checks are never reported as passed.
 8. Report chosen routes, changed surfaces, observed proof, and remaining gaps. Never claim unobserved success.
