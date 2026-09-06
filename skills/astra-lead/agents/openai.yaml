@@ -1,4 +1,4 @@
 interface:
   display_name: "Astra Lead"
-  short_description: "Astra 지휘와 Luna·Terra·Sol 자동 개발 위임"
-  default_prompt: "Use $astra-lead to coordinate this coding task and choose Luna, Terra, or Sol workers with task-appropriate reasoning effort."
+  short_description: "Astra direct work with cost-aware or speed-first delegation"
+  default_prompt: "Use $astra-lead to finish this task, following my speed or cost preference and delegating only when it earns its overhead."

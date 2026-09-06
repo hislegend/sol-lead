@@ -1,23 +1,23 @@
 # Astra Lead
 
-Codex skill for an `Astra lead → Luna / Terra / Sol implementation` workflow. Formerly **Sol Lead**; repository URL remains `hislegend/sol-lead`.
+A small Codex skill for choosing direct implementation or bounded delegation. Astra can plan, code, debug, and verify. Luna, Terra, and Sol are available workers when delegation earns its setup and integration cost.
 
-Astra owns planning, architecture, coordination, verification, and final judgment. Workers receive bounded tasks in fresh contexts, with model and effort chosen by the work.
+Formerly Sol Lead; repository URL remains `hislegend/sol-lead`.
 
-## Routing
+## Choose the outcome you want
 
-| Work | Route |
+| Policy | Default behavior |
 |---|---|
-| Structural search and symbol discovery | Luna low explorer |
-| Mechanical work and localized edits | Luna high |
-| Standard feature implementation | Terra high |
-| Difficult work within a clear design | Terra max |
-| Complex features, cross-module integration, difficult bugs | Sol high; xhigh when deeper reasoning is needed |
-| Architecture, work allocation, final verdict | Astra lead |
+| Economy (public default) | Finish small work directly; send worthwhile bounded work to a cheaper capable model |
+| Speed | Lead implements the critical path; parallelize independent work only when it can shorten completion |
+| Local/user override | Explicit preferences and project rules take precedence |
 
-Start at the appropriate tier. Complex work can go straight to Sol. Failure may escalate through `Luna high → Terra high → Terra max → Sol high → Sol xhigh`; repeated failures of the same specification return to Astra for replanning.
+Examples:
 
-Parallel implementation workers use separate worktrees and feature branches. Lead inspects actual changes and verification evidence before integration.
+- `$astra-lead economy: implement this feature within my budget.`
+- `$astra-lead speed: finish this fix quickly; delegate only useful independent work.`
+
+Economy starting points: Luna low/medium for deterministic work, Terra medium for ordinary bounded implementation, Sol high for complex integration. No forced ladder. Worker roles may pin their own model and effort.
 
 ## Install
 
@@ -27,23 +27,17 @@ mkdir -p ~/.codex/skills
 cp -R astra-lead/skills/astra-lead ~/.codex/skills/astra-lead
 ```
 
-For pull-based updates, link the skill instead of copying it:
+Select GPT-6 Astra for the lead session and start a new session after installation. The skill cannot change the main model.
 
-```bash
-git clone https://github.com/hislegend/sol-lead.git ~/src/astra-lead
-mkdir -p ~/.codex/skills
-ln -s ~/src/astra-lead/skills/astra-lead ~/.codex/skills/astra-lead
-```
+For an existing installation, back up the old folder outside the scanned skills directory before replacement. Old `skills/sol-lead` links must migrate to `skills/astra-lead`. Legacy wording is recognized, but the current skill identifier is `astra-lead`.
 
-For an existing installation, back up the old `sol-lead` folder outside the scanned skills directory before installing `astra-lead`. If the old installation was a symlink, update that installation deliberately; do not overwrite its target. The repository skill path changed from `skills/sol-lead` to `skills/astra-lead`.
+## Operating policy
 
-Select GPT-6 Astra for the lead session and start a new session after installation. Invoke `$astra-lead`, “아스트라리드”, or “Astra 리드”. Legacy wording “sol-lead” is recognized in the description, but the installed skill identifier is now `astra-lead`.
+Ordinary changes use project checks and direct behavior verification without mandatory model-review loops. Material high-risk changes require a fresh capable reviewer before release, unless project rules require stronger checks. Confirmed blockers must be resolved. Nightly checks supplement this gate; they do not replace it.
 
-## Cost and verification
+Parallel implementation uses separate worktrees and feature branches. Role settings can restrict filesystem writes, but external tools require their own permissions. Preserve existing user approvals and repository rules.
 
-Delegation can add task-packet, review, and retry overhead. Lower total cost or latency is not guaranteed. Measure comparable tasks using per-model input, cached input, output, elapsed time, retries, and verification results. See [comparison guidance](skills/astra-lead/references/token-comparison.md).
-
-The skill cannot change the main-session model or grant permissions. Worker model availability depends on the current runtime. Final verification and acceptance remain Astra's responsibility; repository and user rules govern publication and deployment.
+Speed and cost benefits are hypotheses until measured. See [measurement guidance](skills/astra-lead/references/token-comparison.md). No benchmark multiplier or guaranteed savings is claimed.
 
 ## License
 
