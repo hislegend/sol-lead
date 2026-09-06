@@ -1,13 +1,13 @@
-# Token and Cost Comparison
+# Measure Accepted Work
 
-Compare Astra working directly with Astra coordinating Luna, Terra, and Sol workers. Measure actual runs; former Sol-lead illustrative token percentages are not Astra benchmarks.
+Compare direct lead implementation with an economy or parallel route using the same acceptance criteria. Neither cheaper tokens nor fewer lead tokens proves a cheaper or faster accepted result.
 
-Record per model: uncached input, cached input, output tokens, elapsed time, retries, and accepted outcome. Include lead planning, task packets, worker exploration, review, and corrections. For account-based Codex use, also distinguish account usage from hypothetical API charges.
+Record task ID, starting revision, scope/risk, policy, models/efforts, start and finish, human/queue waiting separately, per-model token use, retries, first-pass gate outcome, integration repairs, and confirmed escaped defects over a stated observation window. Treat API estimates and subscription usage as separate metrics.
 
-Use current rates only when an API-cost estimate is needed:
+Use actual end-to-end elapsed time. Summed child durations double-count overlapping work and are not lead waiting time. Keep timeouts, failed runs, and blocked tasks in the comparison. Edit-call counts are not delivered features. Findings need stable defect identities, deduplication, acceptance, severity, and later outcomes; the same median list length does not establish review quality or convergence.
 
-`cost = sum(uncached input tokens × input rate + cached input tokens × cached rate + output tokens × output rate)`
+For API estimates, use the actual provider's rates and cache rules. Separate input, cache reads/writes, and output; handle missing usage explicitly. A child session's average total cost is not a universal fixed setup cost. Context isolation may reduce rereads but may also introduce new prefixes, output, and repairs. Do not transfer a cache-derived token threshold between vendors or models.
 
-Hold task scope, starting checkout, cache conditions, acceptance criteria, and final verification constant. Compare several representative tasks: localized edit, standard feature, and complex integration.
+For a pilot, match tasks by scope and risk and randomize direct vs delegated runs. Hold effort fixed when testing delegation; hold route fixed when testing effort. Same-task repeats can benefit from familiarity and warm caches: isolate checkouts and counterbalance order. Five tasks per arm gives an initial signal, not proof. Report spread and failures alongside medians.
 
-Choose Luna for mechanically checkable work, Terra for ordinary implementation, and Sol when complexity warrants it. Starting a complex task on Sol can avoid failed cheaper attempts; this is a routing rationale, not a guaranteed saving. Astra owns final decisions, and delegation should reduce unnecessary lead-context loading without weakening verification.
+Choose the faster route only if acceptance and escaped-defect checks remain comparable; choose the cheaper route only after including verification and rework. Preserve an explicit user budget. Unknown model-specific subscription buckets remain unknown.
