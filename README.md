@@ -1,64 +1,49 @@
-# sol-lead
+# Astra Lead
 
-Codex skill for a `Sol lead → Luna/Terra implementation` workflow.
+Codex skill for an `Astra lead → Luna / Terra / Sol implementation` workflow. Formerly **Sol Lead**; repository URL remains `hislegend/sol-lead`.
 
-Sol keeps architecture, coordination, verification, and final judgment. Implementation and broad repository reading move to lower-cost worker contexts. Worker model and effort are selected automatically by task size.
+Astra owns planning, architecture, coordination, verification, and final judgment. Workers receive bounded tasks in fresh contexts, with model and effort chosen by the work.
 
 ## Routing
 
 | Work | Route |
 |---|---|
-| Read-only discovery | Luna low |
-| Localized edits and pattern work | Luna high |
-| Standard features across a few files | Terra high |
-| Complex implementation or escalation | Terra max |
-| Design and final verdict | Sol lead |
+| Structural search and symbol discovery | Luna low explorer |
+| Mechanical work and localized edits | Luna high |
+| Standard feature implementation | Terra high |
+| Difficult work within a clear design | Terra max |
+| Complex features, cross-module integration, difficult bugs | Sol high; xhigh when deeper reasoning is needed |
+| Architecture, work allocation, final verdict | Astra lead |
 
-Failed implementation escalates:
+Start at the appropriate tier. Complex work can go straight to Sol. Failure may escalate through `Luna high → Terra high → Terra max → Sol high → Sol xhigh`; repeated failures of the same specification return to Astra for replanning.
 
-`Luna high → Terra high → Terra max`
+Parallel implementation workers use separate worktrees and feature branches. Lead inspects actual changes and verification evidence before integration.
 
 ## Install
 
-### Clone and copy
-
 ```bash
-git clone https://github.com/hislegend/sol-lead.git
+git clone https://github.com/hislegend/sol-lead.git astra-lead
 mkdir -p ~/.codex/skills
-cp -R sol-lead/skills/sol-lead ~/.codex/skills/sol-lead
+cp -R astra-lead/skills/astra-lead ~/.codex/skills/astra-lead
 ```
 
-### Clone and link
-
-Use a symbolic link when you want `git pull` updates to apply immediately:
+For pull-based updates, link the skill instead of copying it:
 
 ```bash
-git clone https://github.com/hislegend/sol-lead.git ~/src/sol-lead
+git clone https://github.com/hislegend/sol-lead.git ~/src/astra-lead
 mkdir -p ~/.codex/skills
-ln -s ~/src/sol-lead/skills/sol-lead ~/.codex/skills/sol-lead
+ln -s ~/src/astra-lead/skills/astra-lead ~/.codex/skills/astra-lead
 ```
 
-Restart Codex after installation. Invoke with `$sol-lead`, or ask for “Sol 리드”, “자동 위임”, or “토큰 절약 모드”.
+For an existing installation, back up the old `sol-lead` folder outside the scanned skills directory before installing `astra-lead`. If the old installation was a symlink, update that installation deliberately; do not overwrite its target. The repository skill path changed from `skills/sol-lead` to `skills/astra-lead`.
 
-## Token comparison
+Select GPT-6 Astra for the lead session and start a new session after installation. Invoke `$astra-lead`, “아스트라리드”, or “Astra 리드”. Legacy wording “sol-lead” is recognized in the description, but the installed skill identifier is now `astra-lead`.
 
-Illustrative 100,000-token baseline:
+## Cost and verification
 
-| Pattern | Sol tokens | Total tokens |
-|---|---:|---:|
-| Sol works directly | 100,000 | 100,000 |
-| Sol lead + Luna high | 20,000 | 105,000 |
-| Sol lead + Terra high | 25,000 | 110,000 |
-| Automatic Luna/Terra routing | 25,000 | 110,000 |
+Delegation can add task-packet, review, and retry overhead. Lower total cost or latency is not guaranteed. Measure comparable tasks using per-model input, cached input, output, elapsed time, retries, and verification results. See [comparison guidance](skills/astra-lead/references/token-comparison.md).
 
-Delegation may raise total tokens through task packets and summaries. Goal: reduce expensive Sol-context usage, not guarantee lower raw token count. See [token comparison notes](skills/sol-lead/references/token-comparison.md).
-
-## Limits
-
-- Skill cannot change main-session model. Select Sol in Codex.
-- Available worker roles and model overrides depend on current Codex runtime.
-- Final verification remains lead responsibility.
-- Push, deployment, migration, dependency changes, and irreversible actions still follow user and repository rules.
+The skill cannot change the main-session model or grant permissions. Worker model availability depends on the current runtime. Final verification and acceptance remain Astra's responsibility; repository and user rules govern publication and deployment.
 
 ## License
 
